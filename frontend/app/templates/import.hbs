@@ -5,6 +5,59 @@
 
 <hr/>
 
-<p>
-    ...
-</p>
+{{#if (eq status 'waiting')}}
+    <p>{{request}}</p>
+    <p><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></p>
+    <p>Waiting ...</p>
+{{else if (eq status 'success')}}
+    <p class="text-success"><strong>Success!</strong></p>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-striped ">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td>IP address</td><td> : </td><td><strong>{{ip_address}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <button class="btn btn-success" {{action 'retry'}}>Try again</button>
+{{else if (eq status 'error')}}
+    <p class="text-danger"><strong>Oops!</strong></p>
+    <p>Oops!</p>
+    {{#each data.responseJSON.errors as |error|}}
+        <p>{{error}}</p>
+    {{/each}}
+    <button class="btn btn-success" {{action 'retry'}}>Try again</button>
+{{else}}
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form>
+                <div class="form-group row">
+                    <label for="file_name" class="col-2 col-form-label">File name :</label>
+                    <div class="col-10">
+                        {{input class="form-control" id="file_name" value=file_name}}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="upload_dir" class="col-2 col-form-label">Upload dir :</label>
+                    <div class="col-10">
+                        {{input class="form-control" id="upload_dir" value=upload_dir}}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="max_lines" class="col-2 col-form-label">Max lines :</label>
+                    <div class="col-10">
+                        {{input class="form-control" id="max_lines" value=max_lines placeholder="Leave blank for no limit"}}
+                    </div>
+                </div>
+
+                <button class="btn btn-success{{if enableSubmit '' ' disabled'}}" {{action 'submit'}}>Import!</button>
+            </form>
+        </div>
+    </div>
+{{/if}}

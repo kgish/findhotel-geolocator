@@ -1,16 +1,24 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    ip_address: null,
+    file_name: 'data_dump.csv',
+    upload_dir: 'uploads',
+    max_lines: null,
 
     status: null,
     request: null,
     elapsed: null,
     data: null,
 
-    enableSubmit: Ember.computed('ip_address', function() {
-        let ip_address = this.get('ip_address');
-        return ip_address && ip_address.length;
+    enableSubmit: Ember.computed('file_name', 'upload_dir', 'max_lines', function() {
+        let file_name = this.get('file_name'),
+            upload_dir = this.get('upload_dir'),
+            max_lines = this.get('max_lines');
+        return (
+            (file_name && file_name.length) &&
+            (upload_dir && upload_dir.length) &&
+            (max_lines === null || max_lines.length === 0 || max_lines.match(/^[1-9][0-9]+$/))
+        );
     }),
 
     actions: {

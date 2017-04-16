@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20170415092520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "geolocation_locations", force: :cascade do |t|
+    t.inet   "ip_address"
+    t.string "country_code"
+    t.string "country"
+    t.string "city"
+    t.float  "latitude"
+    t.float  "longitude"
+    t.bigint "mystery_value"
+    t.index ["country_code", "country", "city"], name: "index_geolocation_locations_on_cccc", unique: true, using: :btree
+    t.index ["ip_address"], name: "index_geolocation_locations_on_ip_address", using: :btree
+  end
 
 end
