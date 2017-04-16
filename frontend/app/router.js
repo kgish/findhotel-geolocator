@@ -9,6 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('about');
   this.route('import');
+  this.route('challenge');
 });
 
 export default Router;

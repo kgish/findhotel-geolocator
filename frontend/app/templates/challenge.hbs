@@ -1,0 +1,65 @@
+<h1>{{fa-icon 'star'}} Challenge</h1>
+<p class="lead">Geolocation Service</p>
+
+<hr/>
+
+<div style="text-align:left">
+
+<h3>Overview</h3>
+<p>You're provided with a CSV file (`data_dump.csv`) that contains raw geolocation data; the goal is to develop a service written in Ruby that imports such data and expose it via an API.</p>
+
+<pre>
+ip_address,country_code,country,city,latitude,longitude,mystery_value
+200.106.141.15,SI,Nepal,DuBuquemouth,-84.87503094689836,7.206435933364332,7823011346
+160.103.7.140,CZ,Nicaragua,New Neva,-68.31023296602508,-37.62435199624531,7301823115
+70.95.73.73,TL,Saudi Arabia,Gradymouth,-49.16675918861615,-86.05920084416894,2559997162
+,PY,Falkland Islands (Malvinas),,75.41685191518815,-144.6943217219469,0
+125.159.20.54,LI,Guyana,Port Karson,-78.2274228596799,-163.26218895343357,1337885276
+</pre>
+
+<h3>Requirements</h3>
+<p>1. Develop a library with two main features:</p>
+<ul>
+    <li>a service that parses the CSV file containing the raw data and persists it in a database;</li>
+    <li>an interface to provide access to the geolocation data (model layer);</li>
+</ul>
+<p>2. Develop a REST API that uses the aforementioned gem to expose the geolocation data</p>
+
+<p>In doing so:</p>
+<ul>
+    <li>define a data format suitable for the data contained in the CSV file;</li>
+    <li>sanitize the entries (the file comes from an unreliable source; this means that the entries can be duplicated, may miss some value, the value can not be in the correct format or completely bogus);</li>
+    <li>at the end of the import process, return some statistics about the time elapsed, as well as the number of entries accepted/discarded;</li>
+    <li>the library should be configurable by an external configuration (particularly with regards to the DB configuration);</li>
+    <li>the API layer should implement a single endpoint that, given an IP address, returns information about the IP address' location (i.e. country, city);</li>
+    <li>the endpoint should be developed according to the HTTP/1.1 standard;</li>
+    <li>the endpoint should be made accessible via a web application framework of your choice (e.g. Sinatra, Rails, etc);</li>
+    <li>write the adequate test coverage using a unit test framework of your choice (e.g. RSpec, MiniTest);</li>
+</ul>
+
+    <h3>Expected outcome and shipping:</h3>
+<ul>
+    <li>a Ruby gem that packages the import service and the interface for accessing the geolocation data;</li>
+    <li>the REST API application (that uses the aforementioned gem) should be Dockerised and the Dockerfile should be included in the solution;</li>
+    <li>deploy the project on a cloud platform of your choice (e.g. AWS, Heroku, etc):
+        <ul>
+            <li>run a container for the API layer;</li>
+            <li>run any other container that you think necessary;</li>
+            <li>have a database prepared with the already imported data</li>
+        </ul>
+    </li>
+
+</ul>
+
+<p>
+    <img src="/assets/images/challenge.png" alt="A basic sketch of the expected outcome"/>
+</p>
+
+    <h3>Notes</h3>
+<ul>
+    <li>the file's contents are fake, you don't have to worry about data correctness</li>
+    <li>in production the import service would run as part of a scheduled/cron job, but we don't want that part implemented as part of this exercise</li>
+    <li>for local/development run a DB container can be included</li>
+    <li>you can structure the repository as you see it fit</li>
+</ul>
+</div>
