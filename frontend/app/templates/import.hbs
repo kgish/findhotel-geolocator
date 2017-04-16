@@ -17,13 +17,59 @@
                 <thead></thead>
                 <tbody>
                     <tr>
-                        <td>IP address</td><td> : </td><td><strong>{{ip_address}}</strong></td>
+                        <td>File name</td><td> : </td><td><strong>{{file_name}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Request</td><td> : </td><td>{{request}}</td>
+                    </tr>
+                    <tr>
+                        <td>Upload dir</td><td> : </td><td>{{upload_dir}}</td>
+                    </tr>
+                    <tr>
+                        <td>Max lines</td><td> : </td><td>{{if max_lines max_lines 'No limit'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Elapsed time</td><td> : </td><td>{{elapsed}} msecs</td>
+                    </tr>
+                    <tr>
+                        <td>Processed</td><td> : </td><td>{{data.import_data.records.total}} lines</td>
+                    </tr>
+                    <tr>
+                        <td>OK</td><td> : </td><td>{{data.import_data.records.ok}}</td>
+                    </tr>
+                    <tr>
+                        <td>NOK</td><td> : </td><td>{{data.import_data.records.nok}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
     <button class="btn btn-success" {{action 'retry'}}>Try again</button>
+    {{#if data.import_data.records.errors.length}}
+        <div class="row" style="margin-top:20px">
+            <div class="col-md-12">
+                <p><strong>Errors</strong></p>
+                <table class="table table-condensed table-striped ">
+                    <thead>
+                    <tr>
+                        <th>Line</th>
+                        <th>Values</th>
+                        <th>Messages</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {{#each data.import_data.records.errors as |error|}}
+                            <tr>
+                                <td>{{error.line}}</td>
+                                <td>{{error.values}}</td>
+                                <td>{{put-messages error.messages}}</td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {{/if}}
 {{else if (eq status 'error')}}
     <p class="text-danger"><strong>Oops!</strong></p>
     <p>Oops!</p>

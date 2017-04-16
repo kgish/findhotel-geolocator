@@ -26,8 +26,8 @@ export default Ember.Controller.extend({
             if (!this.get('enableSubmit')) {
                 return;
             }
-            let url = '/geolocation/ip_address/' + this.get('ip_address'),
-                request = 'GET ' + url;
+            let url = '/geolocation/import_data/',
+                request = 'POST ' + url;
 
             this.set('request', request);
             this.set('status', 'waiting');
@@ -37,8 +37,12 @@ export default Ember.Controller.extend({
 
             Ember.$.ajax({
                 url: url,
-                type: 'GET',
-                data: {},
+                type: 'POST',
+                data: {
+                    file_name: this.get('file_name'),
+                    upload_dir: this.get('upload_dir'),
+                    max_lines: this.get('max_lines') || 0
+                },
                 success: function (data) {
                     console.log(JSON.stringify(data));
                     let diff = Date.now() - start;
