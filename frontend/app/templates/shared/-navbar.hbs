@@ -2,20 +2,16 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsHeader" aria-controls="navbarsHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    {{#link-to 'application' class='navbar-brand'}}{{fa-icon 'quote-left'}} Ember-Rails-App {{fa-icon 'quote-right'}}<span class="sr-only">(current)</span>{{/link-to}}
+    {{#link-to 'application' class='navbar-brand'}}{{fa-icon 'quote-left'}} Findhotel-Geolocator {{fa-icon 'quote-right'}}<span class="sr-only">(current)</span>{{/link-to}}
 
     <div class="collapse navbar-collapse" id="navbarsHeader">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                {{#link-to 'users' class='nav-link'}}Users{{/link-to}}
+                {{#link-to 'import' class='nav-link'}}Import{{/link-to}}
             </li>
             <li class="nav-item">
-                {{#link-to 'notes' class='nav-link'}}Notes{{/link-to}}
+                {{#link-to 'about' class='nav-link'}}About{{/link-to}}
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </div>
 </nav>

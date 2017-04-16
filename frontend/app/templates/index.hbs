@@ -1,5 +1,29 @@
-<h1>{{fa-icon 'quote-left'}} Ember Rails App {{fa-icon 'quote-right'}}</h1>
+<h1>{{fa-icon 'quote-left'}} Findhotel-Geolocator {{fa-icon 'quote-right'}}</h1>
 <p class="lead">
-    Use this template as a quick and easy way to start new projects.<br>
-    Have fun being an ambitious and creative web developer.
+    Have fun exploring the wide world of interesting places.
 </p>
+
+<hr/>
+
+{{#if (eq status 'waiting')}}
+    <p>{{request}}</p>
+    <p><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></p>
+    <p>Waiting ...</p>
+{{else if (eq status 'success')}}
+    <p>Success!</p>
+{{else if (eq status 'error')}}
+    <p>Oops!</p>
+    {{#each data.responseJSON.errors as |error|}}
+        <p>{{error}}</p>
+    {{/each}}
+    <button class="btn btn-success" {{action 'retry'}}>Try again</button>
+{{else}}
+    <div class="row">
+        <div class="col-md-8 offset-md-4">
+            <form class="form-inline">
+                 <label for="ip_address">IP Address: &nbsp; </label>
+                {{input class="form-control" id="ip_address" value=ip_address placeholder="118.254.68.63"}} &nbsp; <button class="btn btn-success{{if enableSubmit '' ' disabled'}}" {{action 'submit'}}>Search!</button>
+            </form>
+        </div>
+    </div>
+{{/if}}
