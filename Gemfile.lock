@@ -1,5 +1,5 @@
 PATH
-  remote: vendor/plugins/geolocation
+  remote: plugins/geolocation
   specs:
     geolocation (0.1.0)
       rails (~> 5.0.2)
