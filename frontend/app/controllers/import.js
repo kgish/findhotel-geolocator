@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
     file_name: 'data_dump.csv',
     upload_dir: 'uploads',
     delete_all: true,
-    allow_blank: false,
+    allow_blank: true,
     max_lines: null,
 
     status: null,
