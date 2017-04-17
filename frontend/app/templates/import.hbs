@@ -54,13 +54,13 @@
     {{#if data.records.errors.length}}
         <div class="row" style="margin-top:20px">
             <div class="col-md-12">
-                <p><strong>Errors</strong></p>
+                <div class="alert alert-danger"><strong>Rejected records</strong></div>
                 <table class="table table-condensed table-striped ">
                     <thead>
                     <tr>
                         <th>Line</th>
-                        <th>Values</th>
-                        <th>Messages</th>
+                        <th>Record</th>
+                        <th>Reason</th>
                     </tr>
                     </thead>
                     <tbody>
