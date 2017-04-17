@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
     file_name: 'data_dump.csv',
     upload_dir: 'uploads',
+    delete_all: true,
+    allow_blank: false,
     max_lines: null,
 
     status: null,
@@ -32,8 +34,7 @@ export default Ember.Controller.extend({
             this.set('request', request);
             this.set('status', 'waiting');
 
-            let _this = this,
-                start = Date.now();
+            let _this = this;
 
             Ember.$.ajax({
                 url: url,
@@ -41,17 +42,17 @@ export default Ember.Controller.extend({
                 data: {
                     file_name: this.get('file_name'),
                     upload_dir: this.get('upload_dir'),
+                    allow_blank: this.get('allow_blank'),
+                    delete_all: this.get('delete_all'),
                     max_lines: this.get('max_lines') || 0
                 },
                 success: function (data) {
-                    console.log(JSON.stringify(data));
-                    let diff = Date.now() - start;
-                    _this.set('data', data);
+                    //console.log(JSON.stringify(data));
+                    _this.set('data', data.import_data);
                     _this.set('status', 'success');
-                    _this.set('elapsed', diff);
                 },
                 error: function (jqxr) {
-                    console.log(JSON.stringify(jqxr));
+                    //console.log(JSON.stringify(jqxr));
                     _this.set('data', jqxr);
                     _this.set('status', 'error');
                 }
@@ -59,6 +60,12 @@ export default Ember.Controller.extend({
         },
         retry() {
            this.set('status', null);
+        },
+        selectAllowBlank(allow_blank) {
+            this.set('allow_blank', allow_blank);
+        },
+        selectDeleteAll(delete_all) {
+            this.set('delete_all', delete_all);
         }
     }
 });

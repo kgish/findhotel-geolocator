@@ -10,42 +10,48 @@
     <p><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></p>
     <p>Waiting ...</p>
 {{else if (eq status 'success')}}
-    <p class="text-success"><strong>Success!</strong></p>
+    <div class="alert alert-success"><strong>Success!</strong></div>
     <div class="row">
         <div class="col-md-12">
             <table class="table table-condensed table-striped ">
                 <thead></thead>
                 <tbody>
                     <tr>
-                        <td>File name</td><td> : </td><td><strong>{{file_name}}</strong></td>
-                    </tr>
-                    <tr>
                         <td>Request</td><td> : </td><td>{{request}}</td>
                     </tr>
                     <tr>
-                        <td>Upload dir</td><td> : </td><td>{{upload_dir}}</td>
+                        <td>File name</td><td> : </td><td>{{data.file_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Upload dir</td><td> : </td><td>{{data.upload_dir}}</td>
+                    </tr>
+                    <tr>
+                        <td>Allow blank</td><td> : </td><td>{{if (eq data.allow_blank 'true') 'Yes' 'No'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Delete all</td><td> : </td><td>{{if (eq data.delete_all 'true') 'Yes' 'No'}}</td>
                     </tr>
                     <tr>
                         <td>Max lines</td><td> : </td><td>{{if max_lines max_lines 'No limit'}}</td>
                     </tr>
                     <tr>
-                        <td>Elapsed time</td><td> : </td><td>{{elapsed}} msecs</td>
+                        <td>Processed</td><td> : </td><td>{{data.records.total}} lines</td>
                     </tr>
                     <tr>
-                        <td>Processed</td><td> : </td><td>{{data.import_data.records.total}} lines</td>
+                        <td>OK</td><td> : </td><td>{{data.records.ok}}</td>
                     </tr>
                     <tr>
-                        <td>OK</td><td> : </td><td>{{data.import_data.records.ok}}</td>
+                        <td>NOK</td><td> : </td><td>{{data.records.nok}}</td>
                     </tr>
                     <tr>
-                        <td>NOK</td><td> : </td><td>{{data.import_data.records.nok}}</td>
+                        <td>Elapsed time</td><td> : </td><td>{{data.records.stopwatch.elapsed}} msecs</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
     <button class="btn btn-success" {{action 'retry'}}>Try again</button>
-    {{#if data.import_data.records.errors.length}}
+    {{#if data.records.errors.length}}
         <div class="row" style="margin-top:20px">
             <div class="col-md-12">
                 <p><strong>Errors</strong></p>
@@ -58,7 +64,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        {{#each data.import_data.records.errors as |error|}}
+                        {{#each data.records.errors as |error|}}
                             <tr>
                                 <td>{{error.line}}</td>
                                 <td>{{error.values}}</td>
@@ -71,8 +77,7 @@
         </div>
     {{/if}}
 {{else if (eq status 'error')}}
-    <p class="text-danger"><strong>Oops!</strong></p>
-    <p>Oops!</p>
+    <div class="alert alert-danger"><strong>Oops!</strong></div>
     {{#each data.responseJSON.errors as |error|}}
         <p>{{error}}</p>
     {{/each}}
@@ -82,21 +87,41 @@
         <div class="col-md-8 offset-md-2">
             <form>
                 <div class="form-group row">
-                    <label for="file_name" class="col-2 col-form-label">File name :</label>
+                    <label for="file_name" class="col-2 col-form-label">File name:</label>
                     <div class="col-10">
                         {{input class="form-control" id="file_name" value=file_name}}
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="upload_dir" class="col-2 col-form-label">Upload dir :</label>
+                    <label for="upload_dir" class="col-2 col-form-label">Upload dir:</label>
                     <div class="col-10">
                         {{input class="form-control" id="upload_dir" value=upload_dir}}
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="max_lines" class="col-2 col-form-label">Max lines :</label>
+                    <label for="allow_blank" class="col-2 col-form-label">Allow blank:</label>
+                    <div class="col-10">
+                        {{#x-select id="allow_blank" value=allow_blank class="form-control" action=(action "selectAllowBlank") as |xs|}}
+                            {{#xs.option value=true}}Yes{{/xs.option}}
+                            {{#xs.option value=false}}No{{/xs.option}}
+                        {{/x-select}}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="delete_all" class="col-2 col-form-label">Delete all:</label>
+                    <div class="col-10">
+                        {{#x-select id="delete_all" value=delete_all class="form-control" action=(action "selectDeleteAll") as |xs|}}
+                            {{#xs.option value=true}}Yes{{/xs.option}}
+                            {{#xs.option value=false}}No{{/xs.option}}
+                        {{/x-select}}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="max_lines" class="col-2 col-form-label">Max lines:</label>
                     <div class="col-10">
                         {{input class="form-control" id="max_lines" value=max_lines placeholder="Leave blank for no limit"}}
                     </div>

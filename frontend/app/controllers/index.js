@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
                 success: function (data) {
                     console.log(JSON.stringify(data));
                     let diff = Date.now() - start;
-                    _this.set('data', data);
+                    _this.set('data', data.location);
                     _this.set('status', 'success');
                     _this.set('elapsed', diff);
                 },

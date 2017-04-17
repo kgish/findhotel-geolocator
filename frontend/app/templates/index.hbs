@@ -10,32 +10,32 @@
     <p><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></p>
     <p>Waiting ...</p>
 {{else if (eq status 'success')}}
-    <p class="text-success"><strong>Success!</strong></p>
+    <div class="alert alert-success"><strong>Success!</strong></div>
     <div class="row">
         <div class="col-md-12">
             <table class="table table-condensed table-striped ">
                 <thead></thead>
                 <tbody>
                     <tr>
-                        <td>IP address</td><td> : </td><td><strong>{{ip_address}}</strong></td>
-                    </tr>
-                    <tr>
                         <td>Request</td><td> : </td><td>{{request}}</td>
                     </tr>
                     <tr>
-                        <td>Country</td><td> : </td><td>{{data.location.country}} ({{data.location.country_code}})</td>
+                        <td>IP address</td><td> : </td><td>{{ip_address}}</td>
                     </tr>
                     <tr>
-                        <td>City</td><td> : </td><td>{{data.location.city}}</td>
+                        <td>Country</td><td> : </td><td>{{data.country}} ({{data.country_code}})</td>
                     </tr>
                     <tr>
-                        <td>Latitude</td><td> : </td><td>{{data.location.latitude}}</td>
+                        <td>City</td><td> : </td><td>{{data.city}}</td>
                     </tr>
                     <tr>
-                        <td>Longitude</td><td> : </td><td>{{data.location.longitude}}</td>
+                        <td>Latitude</td><td> : </td><td>{{data.latitude}}</td>
                     </tr>
                     <tr>
-                        <td>Mystery value</td><td> : </td><td>{{data.location.mystery_value}}</td>
+                        <td>Longitude</td><td> : </td><td>{{data.longitude}}</td>
+                    </tr>
+                    <tr>
+                        <td>Mystery value</td><td> : </td><td>{{data.mystery_value}}</td>
                     </tr>
                     <tr>
                         <td>Elapsed time</td><td> : </td><td>{{elapsed}} msecs</td>
@@ -46,19 +46,42 @@
     </div>
     <button class="btn btn-success" {{action 'retry'}}>Try again</button>
 {{else if (eq status 'error')}}
-    <p class="text-danger"><strong>Oops!</strong></p>
-    {{#each data.responseJSON.errors as |error|}}
-        <p>{{error}}</p>
-    {{/each}}
+    <div class="alert alert-danger"><strong>Oops!</strong></div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-striped ">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td>Request</td><td> : </td><td>{{request}}</td>
+                    </tr>
+                    <tr>
+                        <td>IP address</td><td> : </td><td>{{ip_address}}</td>
+                    </tr>
+                    <tr>
+                        <td>Elapsed time</td><td> : </td><td>{{elapsed}} msecs</td>
+                    </tr>
+                    <tr>
+                        <td>Error</td><td> : </td>
+                        <td>
+                            {{#each data.responseJSON.errors as |error|}}
+                                <p>{{error}}</p>
+                            {{/each}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <button class="btn btn-success" {{action 'retry'}}>Try again</button>
 {{else}}
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <form>
                 <div class="form-group row">
-                    <label for="ip_address" class="col-2 col-form-label">IP address :</label>
+                    <label for="ip_address" class="col-2 col-form-label">IP address:</label>
                     <div class="col-10">
-                        {{input class="form-control" id="ip_address" value=ip_address placeholder="118.254.68.63"}}
+                        {{input class="form-control" id="ip_address" value=ip_address placeholder="e.g. 118.254.68.63"}}
                     </div>
                 </div>
                 <button class="btn btn-success{{if enableSubmit '' ' disabled'}}" {{action 'submit'}}>Search!</button>
