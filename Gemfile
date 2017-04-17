@@ -29,6 +29,6 @@ group :development do
 end
 
 # Include the future famous geolocation gem!
-gem 'geolocation', path: 'vendor/plugins/geolocation'
+gem 'geolocation', path: 'plugins/geolocation'
 
 gem 'rails_12factor', group: [:staging, :production]
