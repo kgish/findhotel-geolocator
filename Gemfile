@@ -30,3 +30,5 @@ end
 
 # Include the future famous geolocation gem!
 gem 'geolocation', path: 'vendor/plugins/geolocation'
+
+gem 'rails_12factor', group: [:staging, :production]
