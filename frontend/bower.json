@@ -2,7 +2,6 @@
   "name": "frontend",
   "dependencies": {
     "bootstrap": "bootstrap#4.0.0-alpha.6",
-    "font-awesome": "fontawesome#^4.7.0",
-    "moment": "^2.17.1"
+    "moment": "^2.18.1"
   }
 }
