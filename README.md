@@ -24,7 +24,7 @@ See [Rails application](https://github.com/kgish/findhotel-geolocation-gem#rails
 
 ## Geolocation gem
 
-For more information about the geolocation gem, please refer to the [README]().
+For more information about the geolocation gem, please refer to the [README](https://github.com/kgish/findhotel-geolocation-gem/blob/master/README.md).
 
 
 ## License
