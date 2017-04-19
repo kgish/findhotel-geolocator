@@ -9,7 +9,7 @@ export function putMessages(h) {
         let m = h[k];
         Object.keys(m).forEach(key => {
             let messages = m[key];
-            result += `${key}:[${messages.join(',')}]<br/>`
+            result += `${key}:[${messages.join(',')}]<br/>`;
         });
     });
     return Ember.String.htmlSafe(result);
