@@ -29,6 +29,6 @@ group :development do
 end
 
 # Include the future famous geolocation gem!
-gem 'geolocation', path: 'plugins/geolocation'
+gem 'geolocation', :git => 'https://github.com/kgish/findhotel-geolocation-gem.git'
 
 gem 'rails_12factor', group: [:staging, :production]

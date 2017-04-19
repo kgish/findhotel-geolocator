@@ -1,5 +1,6 @@
-PATH
-  remote: plugins/geolocation
+GIT
+  remote: https://github.com/kgish/findhotel-geolocation-gem.git
+  revision: 41c33a59079d894551045958bfb0226116d00bbf
   specs:
     geolocation (0.1.0)
       rails (~> 5.0.2)
