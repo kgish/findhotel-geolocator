@@ -30,6 +30,56 @@ See [Rails application](https://github.com/kgish/findhotel-geolocation-gem#rails
 For more information about the geolocation gem, please refer to the [README](https://github.com/kgish/findhotel-geolocation-gem/blob/master/README.md).
 
 
+## Heroku deployment
+
+First make sure that you've added the following lines (see above) to your `Gemfile`:
+
+```
+gem 'ember-cli-rails'
+```
+
+To configure your EmberCLI-Rails applications for Heroku:
+
+```shell
+$ bundle exec rails generate ember:heroku
+$ git add .
+$ git commit -m"Ran rails generate ember:heroku"
+```
+
+Make sure that you have heroku installed and then you can create the application, for example:
+
+```shell
+$ heroku create findhotel-geolocator
+```
+
+Add the NodeJS buildpack and configure NPM to include the bower dependency's executable file.
+
+```shell
+$ heroku buildpacks:clear
+$ heroku buildpacks:add --index 1 heroku/nodejs
+$ heroku buildpacks:add --index 2 heroku/ruby
+$ heroku config:unset SKIP_EMBER
+```
+
+You are ready to deploy:
+
+```shell
+$ git push heroku master
+```
+
+and fire it up:
+
+```shell
+$ heroku open
+```
+
+The url is:
+
+```
+https://findhotel-geolocator.herokuapp.com/
+```
+
+
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
