@@ -2,6 +2,9 @@
 
 This is the demo application which can be used as a simple GUI test engine to verify that the [geolocation gem](https://github.com/kgish/findhotel-geolocation-gem) is working properly.
 
+![Screenshot of the homepage](images/screenshot-homepage.png)
+
+
 ## Installation
 
 The installation is straight-forward. We will clone the application demo `findhotel-geolocator` for the github
