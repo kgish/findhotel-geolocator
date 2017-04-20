@@ -67,7 +67,7 @@ You are ready to deploy:
 $ git push heroku master
 ```
 
-and fire it up:
+and fire it up (fingers-crossed):
 
 ```shell
 $ heroku open
