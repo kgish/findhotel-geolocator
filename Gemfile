@@ -28,7 +28,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# gem 'rails_12factor', group: [:staging, :production]
 gem 'rails_12factor', group: [:staging, :production]
 
 # Include the future famous geolocation gem!
