@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/kgish/findhotel-geolocation-gem.git
+  remote: https://github.com/kgish/geolocation-gem.git
   revision: 24a6c9c49f236cb76b3f1a61449260aa45cb1999
   specs:
     geolocation (0.1.0)

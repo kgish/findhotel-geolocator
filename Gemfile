@@ -31,5 +31,5 @@ end
 gem 'rails_12factor', group: [:staging, :production]
 
 # Include the future famous geolocation gem!
-gem 'geolocation', :git => 'https://github.com/kgish/findhotel-geolocation-gem.git'
+gem 'geolocation', :git => 'https://github.com/kgish/geolocation-gem.git'
 

@@ -1,17 +1,17 @@
 # A Simple Geolocator Gem
 
-This is the demo application which can be used as a simple GUI test engine to verify that the [geolocation gem](https://github.com/kgish/findhotel-geolocation-gem) is working properly.
+This is the demo application which can be used as a simple GUI test engine to verify that the [geolocation gem](https://github.com/kgish/geolocation-gem) is working properly.
 
 ![Screenshot of the homepage](images/screenshot-homepage.png)
 
 
 ## Installation
 
-The installation is straight-forward. We will clone the application demo `findhotel-geolocator` for the github
+The installation is straight-forward. We will clone the application demo `geolocation-gem-demo` for the github
 
 ```shell
-$ git clone https://github.com/kgish/findhotel-geolocator.git
-$ cd findhotel-geolocator
+$ git clone https://github.com/kgish/geolocation-gem-demo.git
+$ cd geolocation-gem-demo
 $ bundle install
 $ cd frontend
 $ npm install
@@ -22,12 +22,12 @@ $ bin/rails server
 
 Go to the import page at `http://localhost:3000/import` and hit the [Import!]-button. Please note, that for demo purposes this import file is a smaller version of the original, having 1000 lines instead of 1000000 lines which take a long time to import: 82 minutes (see below).
 
-See [Rails application](https://github.com/kgish/findhotel-geolocation-gem#rails-application) for more details and screenshots showing how this application works.
+See [Rails application](https://github.com/kgish/geolocation-gem#rails-application) for more details and screenshots showing how this application works.
 
 
 ## Geolocation gem
 
-For more information about the geolocation gem, please refer to the [README](https://github.com/kgish/findhotel-geolocation-gem/blob/master/README.md).
+For more information about the geolocation gem, please refer to the [README](https://github.com/kgish/geolocation-gem/blob/master/README.md).
 
 
 ## Heroku deployment
@@ -49,7 +49,7 @@ $ git commit -m"Ran rails generate ember:heroku"
 Make sure that you have heroku installed and then you can create the application, for example:
 
 ```shell
-$ heroku create findhotel-geolocator
+$ heroku create geolocation-gem-demo
 ```
 
 Add the NodeJS buildpack and configure NPM to include the bower dependency's executable file.
@@ -76,7 +76,7 @@ $ heroku open
 The url is:
 
 ```
-https://findhotel-geolocator.herokuapp.com/
+https://geolocation-gem-demo.herokuapp.com/
 ```
 
 
