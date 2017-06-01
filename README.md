@@ -1,4 +1,4 @@
-# Findhotel Geolocator
+# A Simple Geolocator Gem
 
 This is the demo application which can be used as a simple GUI test engine to verify that the [geolocation gem](https://github.com/kgish/findhotel-geolocation-gem) is working properly.
 
